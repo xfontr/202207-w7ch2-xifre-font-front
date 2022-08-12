@@ -1,5 +1,13 @@
+import AppStyled from "./AppStyled";
+
 const App = () => {
-  return <div className="App"></div>;
+  return (
+    <AppStyled className="App">
+      <header>
+        <h1>ROBOTS</h1>
+      </header>
+    </AppStyled>
+  );
 };
 
 export default App;
