@@ -1,35 +1,24 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getRobotsActionNew } from "../../store/actionCreators/actionCreators";
+import { useSelector } from "react-redux";
 import { selectAllRobots } from "../../store/selectors/selectors";
 import RobotCard from "../RobotCard/RobotCard";
 import RobotListStyled from "./RobotListStyled";
+import useAPI from "../../hooks/useAPI";
 
 const RobotList = (): JSX.Element => {
-  const dispatch = useDispatch();
   const { robots } = useSelector(selectAllRobots);
+  const { getAllRobots } = useAPI();
 
   useEffect(() => {
-    const robotsMock = [
-      {
-        name: "Bender",
-        image:
-          "https://www.paredro.com/wp-content/uploads/2014/05/sorayama-sexy-robot-2.jpg",
-        creationDate: "13/08/2022",
-        speed: 9,
-        endurance: 3,
-      },
-    ];
-
-    dispatch(getRobotsActionNew(robotsMock));
-  }, [dispatch]);
+    getAllRobots();
+  }, [getAllRobots]);
 
   return (
     <RobotListStyled className="robot-gallery">
       <h2 className="robot-gallery__title">Robot List</h2>
       <ul className="robot-gallery__list">
         {robots.map((robot) => (
-          <RobotCard robot={robot} />
+          <RobotCard robot={robot} key={robot.name} />
         ))}
       </ul>
     </RobotListStyled>
