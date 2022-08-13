@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getRobotsActionNew } from "../../store/actionCreators/actionCreators";
 import { selectAllRobots } from "../../store/selectors/selectors";
+import RobotCard from "../RobotCard/RobotCard";
 import RobotListStyled from "./RobotListStyled";
 
 const RobotList = (): JSX.Element => {
@@ -12,7 +13,7 @@ const RobotList = (): JSX.Element => {
     const robotsMock = [
       {
         name: "Bender",
-        imag: "#",
+        image: "#",
         creationDate: "13/08/2022",
         speed: 9,
         endurance: 3,
@@ -27,11 +28,7 @@ const RobotList = (): JSX.Element => {
       <h2 className="robot-gallery__title">Robot List</h2>
       <ul className="robot-gallery__list">
         {robots.map((robot) => (
-          <li>
-            <article>
-              <h2>{robot.name}</h2>
-            </article>
-          </li>
+          <RobotCard robot={robot} />
         ))}
       </ul>
     </RobotListStyled>

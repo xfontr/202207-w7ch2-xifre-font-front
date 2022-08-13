@@ -7,7 +7,7 @@ describe("Given a selectAllTasks component", () => {
         robots: [
           {
             name: "Bender",
-            imag: "#",
+            image: "#",
             creationDate: "13/08/2022",
             speed: 9,
             endurance: 3,

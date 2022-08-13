@@ -6,7 +6,7 @@ import IRobot from "../types/interfaces";
 const initialState: IRobot[] = [
   {
     name: "Bender",
-    imag: "#",
+    image: "#",
     creationDate: "13/08/2022",
     speed: 9,
     endurance: 3,

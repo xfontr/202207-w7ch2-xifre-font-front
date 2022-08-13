@@ -1,6 +1,6 @@
 interface IRobot {
   name: string;
-  imag: string;
+  image: string;
   creationDate: string;
   speed: number;
   endurance: number;
