@@ -36,7 +36,7 @@ describe("Given a useAPI hook", () => {
         },
       } = renderHook(useAPI, { wrapper: Wrapper });
 
-      act(() => {
+      await waitFor(() => {
         getAllRobots();
       });
 
@@ -48,7 +48,6 @@ describe("Given a useAPI hook", () => {
         wrapper: Wrapper,
       });
 
-      // await waitFor(() => {});
       expect(robots).toStrictEqual(dataMock);
     });
   });
