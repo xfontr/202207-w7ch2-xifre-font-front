@@ -11,7 +11,13 @@ const RobotCard = ({ robot }: RobotCardProps): JSX.Element => {
       <RobotCardStyled>
         <h2 className="robot__name">{robot.name}</h2>
         <span className="robot__date">Created on {robot.creationDate}</span>
-        <img className="robot__image" src={robot.image} alt={robot.name} />
+        <img
+          className="robot__image"
+          height="350"
+          width="320"
+          src={robot.image}
+          alt={robot.name}
+        />
         <ul className="robot__data">
           <li className="robot__data-item">
             <span>Speed:</span>

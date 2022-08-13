@@ -8,6 +8,7 @@ const styledMainTheme = {
   containerPaddingSmall: "0.5rem",
 
   containerGap: "1.5rem",
+  containerGapSmall: "0.75rem",
 
   radBorderBig: "1.5rem",
   radBorgerSmall: "0.5rem",
