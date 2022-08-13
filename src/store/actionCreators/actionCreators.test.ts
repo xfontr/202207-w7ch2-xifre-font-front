@@ -1,6 +1,6 @@
-import { loadRobotsActionNew } from "./actionCreators";
+import { getRobotsActionNew } from "./actionCreators";
 
-describe("Given a loadRobotsActionNew function", () => {
+describe("Given a getRobotsActionNew function", () => {
   describe("When called", () => {
     test("Then it should return an action with type 'loadRobots' and an array of robots as a payload", () => {
       const robots = [
@@ -18,7 +18,7 @@ describe("Given a loadRobotsActionNew function", () => {
         payload: robots,
       };
 
-      const result = loadRobotsActionNew(robots);
+      const result = getRobotsActionNew(robots);
 
       expect(result).toEqual(expectedResult);
     });
