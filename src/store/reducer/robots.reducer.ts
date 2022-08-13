@@ -6,7 +6,8 @@ import IRobot from "../types/interfaces";
 const initialState: IRobot[] = [
   {
     name: "Bender",
-    imag: "#",
+    image:
+      "https://www.paredro.com/wp-content/uploads/2014/05/sorayama-sexy-robot-2.jpg",
     creationDate: "13/08/2022",
     speed: 9,
     endurance: 3,

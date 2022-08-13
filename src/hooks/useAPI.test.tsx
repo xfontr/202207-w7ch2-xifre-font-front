@@ -1,5 +1,4 @@
 import { renderHook, waitFor } from "@testing-library/react";
-import { act } from "react-dom/test-utils";
 import { Provider, useSelector } from "react-redux";
 import { store } from "../app/store";
 import { selectAllRobots } from "../store/selectors/selectors";

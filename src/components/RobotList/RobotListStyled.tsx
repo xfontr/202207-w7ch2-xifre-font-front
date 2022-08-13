@@ -7,7 +7,10 @@ const RobotListStyled = styled.section`
     &__title {
       text-align: center;
     }
+
     &__list {
+      display: flex;
+      gap: ${(props) => props.theme.containerGap};
     }
   }
 `;
