@@ -1,4 +1,7 @@
-import { getRobotsActionNew } from "../actionCreators/actionCreators";
+import {
+  deleteRobotActionNew,
+  getRobotsActionNew,
+} from "../actionCreators/actionCreators";
 import robotsReducer from "./robots.reducer";
 
 describe("Given a robotsReducer function", () => {
@@ -43,6 +46,52 @@ describe("Given a robotsReducer function", () => {
       const result = robotsReducer(robots, action);
 
       expect(result).toStrictEqual(robots);
+    });
+  });
+
+  describe("When called with a deleteRobot action as argument", () => {
+    test("Then it should return an array of robots minus the robot passed as payload", () => {
+      const robotsBefore = [
+        {
+          _id: "0",
+          name: "Bender",
+          image: "#",
+          creationDate: "13/08/2022",
+          speed: 9,
+          endurance: 3,
+        },
+        {
+          _id: "1",
+          name: "robotAboutToBeDeleted",
+          image: "#",
+          creationDate: "13/08/2022",
+          speed: 9,
+          endurance: 3,
+        },
+      ];
+      const robotsAfter = [
+        {
+          _id: "0",
+          name: "Bender",
+          image: "#",
+          creationDate: "13/08/2022",
+          speed: 9,
+          endurance: 3,
+        },
+      ];
+      const robot = {
+        _id: "1",
+        name: "robotAboutToBeDeleted",
+        image: "#",
+        creationDate: "13/08/2022",
+        speed: 9,
+        endurance: 3,
+      };
+
+      const action = deleteRobotActionNew(robot);
+      const result = robotsReducer(robotsBefore, action);
+
+      expect(result).toStrictEqual(robotsAfter);
     });
   });
 });
