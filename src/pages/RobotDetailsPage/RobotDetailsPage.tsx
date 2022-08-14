@@ -2,6 +2,7 @@ import RobotDetails from "../../components/RobotDetails/RobotDetails";
 
 const RobotDetailsPage = (): JSX.Element => {
   const dummyRobot = {
+    _id: "0",
     name: "Bender",
     image:
       "https://www.paredro.com/wp-content/uploads/2014/05/sorayama-sexy-robot-2.jpg",
