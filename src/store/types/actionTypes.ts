@@ -10,6 +10,10 @@ export interface IRobotGetById {
   payload: IRobot;
 }
 
+export interface IRobotAdd {
+  type: string;
+  payload: IRobot;
+}
 export interface IRobotDelete {
   type: string;
   payload: IRobot;
