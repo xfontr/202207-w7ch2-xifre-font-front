@@ -20,8 +20,8 @@ const useAPI = () => {
   }, [dispatch, url]);
 
   const getRobotById = useCallback(
-    async (robotId: number | string) => {
-      const robotData = await fetch(`${url}robots/${robotId as string}`);
+    async (robotId: string) => {
+      const robotData = await fetch(`${url}robots/${robotId}`);
       const response = await robotData.json();
 
       dispatch(getRobotByIdActionNew(response));
@@ -34,7 +34,8 @@ const useAPI = () => {
       await fetch(`${url}robots/delete/${robot._id}`, {
         method: "DELETE",
       });
-      await dispatch(deleteRobotActionNew(robot));
+
+      dispatch(deleteRobotActionNew(robot));
     },
     [dispatch, url]
   );
@@ -50,7 +51,7 @@ const useAPI = () => {
       });
       const newRobotWithId: IRobot = await newRobot.json();
 
-      await dispatch(addRobotActionNew(newRobotWithId));
+      dispatch(addRobotActionNew(newRobotWithId));
     },
     [dispatch, url]
   );
