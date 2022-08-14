@@ -12,7 +12,11 @@ const Button = ({ buttonType, action }: ButtonProps): JSX.Element => {
   const viewIcon = <FontAwesomeIcon icon={faEye} />;
 
   return (
-    <ButtonStyled className={`button--${buttonType}`} onClick={action}>
+    <ButtonStyled
+      data-testid={`button--${buttonType}`}
+      className={`button--${buttonType}`}
+      onClick={action}
+    >
       {buttonType === "icon-trash" && <i>{trashIcon}</i>}
       {buttonType === "icon-view" && <i>{viewIcon}</i>}
     </ButtonStyled>

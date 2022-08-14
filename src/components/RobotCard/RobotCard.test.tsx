@@ -66,9 +66,14 @@ describe("Given a RobotCard component", () => {
         endurance: 3,
       };
 
-      render(<RobotCard robot={robot} />, { wrapper: Wrapper });
+      render(
+        <BrowserRouter>
+          <RobotCard robot={robot} />
+        </BrowserRouter>,
+        { wrapper: Wrapper }
+      );
 
-      const buttonElement = screen.getByRole("button");
+      const buttonElement = screen.getByTestId("button--icon-trash");
 
       await userEvent.click(buttonElement);
 

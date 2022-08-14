@@ -1,4 +1,5 @@
 import {
+  addRobotActionNew,
   deleteRobotActionNew,
   getRobotByIdActionNew,
   getRobotsActionNew,
@@ -68,6 +69,36 @@ describe("Given a robotsReducer function", () => {
       const result = robotsReducer(robots, action);
 
       expect(result).toStrictEqual([newRobot]);
+    });
+  });
+
+  describe("When called with a addRobot action as an argument", () => {
+    test("Then it should return the previous array of robots with a new one", () => {
+      const robots: IRobot[] = [
+        {
+          _id: "0",
+          name: "Bender 142",
+          image: "#",
+          creationDate: "13/08/2022",
+          speed: 9,
+          endurance: 3,
+        },
+      ];
+      const newRobot = {
+        _id: "1",
+        name: "Bender",
+        image: "#",
+        creationDate: "13/08/2022",
+        speed: 9,
+        endurance: 3,
+      };
+
+      const action = addRobotActionNew(newRobot);
+
+      const result = robotsReducer(robots, action);
+
+      expect(result).toHaveLength(2);
+      expect(result.includes(newRobot)).toBe(true);
     });
   });
 
