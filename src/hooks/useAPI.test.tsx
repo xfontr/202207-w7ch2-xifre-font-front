@@ -10,16 +10,19 @@ interface WrapperProps {
   children: JSX.Element | JSX.Element[];
 }
 
-const Wrapper = ({ children }: WrapperProps): JSX.Element => {
-  return <Provider store={store}>{children}</Provider>;
-};
+let Wrapper: ({ children }: WrapperProps) => JSX.Element;
+
+beforeEach(() => {
+  Wrapper = ({ children }: WrapperProps): JSX.Element => {
+    return <Provider store={store}>{children}</Provider>;
+  };
+});
 
 describe("Given a useAPI hook", () => {
   describe("When its function getAllRobots is called", () => {
     test("It should add all robots from the DB to the store state", async () => {
       const dataMock = [
         {
-          _id: "0",
           name: "LOL",
           image: "#",
           creationDate: "13/08/2022",
@@ -53,6 +56,43 @@ describe("Given a useAPI hook", () => {
     });
   });
 
+  describe("When its function getRobotById is called", () => {
+    test("It should add an specific robot from the DB to the store state", async () => {
+      const dataMock = {
+        _id: 1,
+        name: "Bender 90000",
+        image: "#",
+        creationDate: "13/08/2022",
+        speed: 9,
+        endurance: 3,
+      };
+
+      global.fetch = jest.fn().mockReturnValue({
+        json: jest.fn().mockReturnValue(dataMock),
+      });
+
+      const {
+        result: {
+          current: { getRobotById },
+        },
+      } = renderHook(useAPI, { wrapper: Wrapper });
+
+      await waitFor(() => {
+        getRobotById(dataMock._id);
+      });
+
+      const {
+        result: {
+          current: { robots },
+        },
+      } = renderHook(() => useSelector(selectAllRobots), {
+        wrapper: Wrapper,
+      });
+
+      expect(robots).toStrictEqual([dataMock]);
+    });
+  });
+
   describe("When its function deleteRobot is called", () => {
     test("It should delete the robot passed as arguments from the DB and from the state", async () => {
       const {
@@ -66,8 +106,8 @@ describe("Given a useAPI hook", () => {
       expect(initialState).toHaveLength(1);
 
       const robotArgument: IRobot = {
-        _id: "0",
-        name: "LOL",
+        _id: 1,
+        name: "Bender 90000",
         image: "#",
         creationDate: "13/08/2022",
         speed: 9,

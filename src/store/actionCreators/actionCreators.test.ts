@@ -1,4 +1,8 @@
-import { deleteRobotActionNew, getRobotsActionNew } from "./actionCreators";
+import {
+  deleteRobotActionNew,
+  getRobotByIdActionNew,
+  getRobotsActionNew,
+} from "./actionCreators";
 
 describe("Given a getRobotsActionNew function", () => {
   describe("When called", () => {
@@ -43,6 +47,30 @@ describe("Given a deleteRobotActionNew function", () => {
       };
 
       const result = deleteRobotActionNew(robot);
+      expect(result).toEqual(expectedResult);
+    });
+  });
+});
+
+describe("Given a getRobotByIdActionNew function", () => {
+  describe("When called", () => {
+    test("It should return and action with type 'getById' and an id as payload", () => {
+      const robot = {
+        _id: "0",
+        name: "Bender",
+        image: "#",
+        creationDate: "13/08/2022",
+        speed: 9,
+        endurance: 3,
+      };
+
+      const expectedResult = {
+        type: "robots@getById",
+        payload: robot,
+      };
+
+      const result = getRobotByIdActionNew(robot);
+
       expect(result).toEqual(expectedResult);
     });
   });

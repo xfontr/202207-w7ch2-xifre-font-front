@@ -1,8 +1,9 @@
 import { useDispatch } from "react-redux";
 import { useCallback } from "react";
 import {
-  deleteRobotActionNew,
+  getRobotByIdActionNew,
   getRobotsActionNew,
+  deleteRobotActionNew,
 } from "../store/actionCreators/actionCreators";
 import IRobot from "../store/types/interfaces";
 
@@ -13,8 +14,19 @@ const useAPI = () => {
   const getAllRobots = useCallback(async () => {
     const robotData = await fetch(`${url}robots`);
     const response = await robotData.json();
+
     dispatch(getRobotsActionNew(response));
   }, [dispatch, url]);
+
+  const getRobotById = useCallback(
+    async (robotId: number | string) => {
+      const robotData = await fetch(`${url}robots/${robotId as string}`);
+      const response = await robotData.json();
+
+      dispatch(getRobotByIdActionNew(response));
+    },
+    [dispatch, url]
+  );
 
   const deleteRobot = useCallback(
     async (robot: IRobot) => {
@@ -25,8 +37,10 @@ const useAPI = () => {
     },
     [dispatch, url]
   );
+
   return {
     getAllRobots,
+    getRobotById,
     deleteRobot,
   };
 };

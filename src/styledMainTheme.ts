@@ -14,7 +14,7 @@ const styledMainTheme = {
   radBorgerSmall: "0.5rem",
 
   smallBreakpoint: "480px",
-  bigBreakpoint: "800px",
+  bigBreakpoint: "1000px",
 };
 
 export default styledMainTheme;

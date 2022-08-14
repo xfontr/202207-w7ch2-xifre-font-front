@@ -1,8 +1,13 @@
 import IRobot from "./interfaces";
 
-export interface IRobotLoad {
+export interface IRobotGet {
   type: string;
   payload: IRobot[];
+}
+
+export interface IRobotGetById {
+  type: string;
+  payload: IRobot;
 }
 
 export interface IRobotDelete {
