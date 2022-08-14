@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 import { store } from "../../app/store";
 import RobotCard from "./RobotCard";
 
@@ -24,7 +25,12 @@ describe("Given a RobotCard component", () => {
         endurance: 3,
       };
 
-      render(<RobotCard robot={robot} />, { wrapper: Wrapper });
+      render(
+        <BrowserRouter>
+          <RobotCard robot={robot} />
+        </BrowserRouter>,
+        { wrapper: Wrapper }
+      );
 
       const name = screen.getByRole("heading", { name: robot.name });
       const image = screen.getByAltText(robot.name);
