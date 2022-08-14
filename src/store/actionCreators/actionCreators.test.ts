@@ -55,13 +55,21 @@ describe("Given a deleteRobotActionNew function", () => {
 describe("Given a getRobotByIdActionNew function", () => {
   describe("When called", () => {
     test("It should return and action with type 'getById' and an id as payload", () => {
-      const id = 1;
-      const expectedResult = {
-        type: "robots@getById",
-        payload: id,
+      const robot = {
+        _id: "0",
+        name: "Bender",
+        image: "#",
+        creationDate: "13/08/2022",
+        speed: 9,
+        endurance: 3,
       };
 
-      const result = getRobotByIdActionNew(id);
+      const expectedResult = {
+        type: "robots@getById",
+        payload: robot,
+      };
+
+      const result = getRobotByIdActionNew(robot);
 
       expect(result).toEqual(expectedResult);
     });

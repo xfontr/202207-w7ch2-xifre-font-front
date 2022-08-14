@@ -10,7 +10,17 @@ const RobotListStyled = styled.section`
 
     &__list {
       display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: ${(props) => props.theme.containerGap};
+
+      & li {
+        width: 100%;
+
+        @media (min-width: ${(props) => props.theme.bigBreakpoint}) {
+          width: 45%;
+        }
+      }
     }
   }
 `;

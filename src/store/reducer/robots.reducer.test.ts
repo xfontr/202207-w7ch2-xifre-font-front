@@ -3,6 +3,7 @@ import {
   getRobotByIdActionNew,
   getRobotsActionNew,
 } from "../actionCreators/actionCreators";
+import IRobot from "../types/interfaces";
 import robotsReducer from "./robots.reducer";
 
 describe("Given a robotsReducer function", () => {
@@ -52,23 +53,21 @@ describe("Given a robotsReducer function", () => {
 
   describe("When called with a getRobotById action as an argument", () => {
     test("Then it should return an array with the robot which id is the same one sent as payload", () => {
-      const robots = [
-        {
-          _id: "0",
-          name: "Bender",
-          image: "#",
-          creationDate: "13/08/2022",
-          speed: 9,
-          endurance: 3,
-        },
-      ];
-      const id = "0";
+      const robots: IRobot[] = [];
+      const newRobot = {
+        _id: "0",
+        name: "Bender",
+        image: "#",
+        creationDate: "13/08/2022",
+        speed: 9,
+        endurance: 3,
+      };
 
-      const action = getRobotByIdActionNew(id);
+      const action = getRobotByIdActionNew(newRobot);
 
       const result = robotsReducer(robots, action);
 
-      expect(result).toStrictEqual(robots);
+      expect(result).toStrictEqual([newRobot]);
     });
   });
 

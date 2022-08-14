@@ -22,8 +22,7 @@ const robotsReducer = createReducer<IRobot[]>(initialState, (builder) => {
 
   builder.addCase(
     actionTypes.getById,
-    (state: IRobot[], action: IRobotGetById) =>
-      state.filter((robot) => robot._id === action.payload)
+    (state: IRobot[], action: IRobotGetById) => [action.payload]
   );
 
   builder.addCase(actionTypes.delete, (state: IRobot[], action: IRobotDelete) =>

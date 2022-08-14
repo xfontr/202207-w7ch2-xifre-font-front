@@ -1,16 +1,21 @@
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import RobotDetails from "../../components/RobotDetails/RobotDetails";
+import useAPI from "../../hooks/useAPI";
+import { selectAllRobots } from "../../store/selectors/selectors";
 
 const RobotDetailsPage = (): JSX.Element => {
-  const dummyRobot = {
-    name: "Bender",
-    image:
-      "https://www.paredro.com/wp-content/uploads/2014/05/sorayama-sexy-robot-2.jpg",
-    creationDate: "13/08/2022",
-    speed: 9,
-    endurance: 3,
-  };
+  const { getRobotById } = useAPI();
+  const { id } = useParams();
 
-  return <RobotDetails robot={dummyRobot} />;
+  useEffect(() => {
+    getRobotById(id as string);
+  });
+
+  const { robots } = useSelector(selectAllRobots);
+
+  return <RobotDetails robot={robots[0]} />;
 };
 
 export default RobotDetailsPage;

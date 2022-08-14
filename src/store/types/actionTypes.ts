@@ -7,7 +7,7 @@ export interface IRobotGet {
 
 export interface IRobotGetById {
   type: string;
-  payload: string | number;
+  payload: IRobot;
 }
 
 export interface IRobotDelete {
