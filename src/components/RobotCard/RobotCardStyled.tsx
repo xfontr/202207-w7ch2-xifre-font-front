@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const RobotCardStyled = styled.article`
+  position: relative;
   background-color: ${(props) => props.theme.primaryColor};
   padding: ${(props) => props.theme.containerPadding};
   border-radius: ${(props) => props.theme.radBorderBig};
@@ -44,6 +45,23 @@ const RobotCardStyled = styled.article`
     padding: ${(props) => props.theme.containerPaddingSmall};
     border-radius: ${(props) => props.theme.radBorgerSmall};
     background-color: ${(props) => props.theme.contrastColor};
+  }
+  .robot__data-button {
+    cursor: pointer;
+    border-radius: 50%;
+    border-color: ${(props) => props.theme.primaryColor};
+    background-color: ${(props) => props.theme.contrastColor};
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 23%;
+    left: 11%;
+    i {
+      color: ${(props) => props.theme.primaryColor};
+    }
   }
 `;
 

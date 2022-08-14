@@ -1,11 +1,14 @@
 import IRobot from "../../store/types/interfaces";
 import RobotCardStyled from "./RobotCardStyled";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 interface RobotCardProps {
   robot: IRobot;
 }
 
 const RobotCard = ({ robot }: RobotCardProps): JSX.Element => {
+  const trashIcon = <FontAwesomeIcon icon={faTrashCan} />;
   return (
     <li>
       <RobotCardStyled>
@@ -27,6 +30,9 @@ const RobotCard = ({ robot }: RobotCardProps): JSX.Element => {
             <span>Endurance:</span> {robot.endurance}
           </li>
         </ul>
+        <button className="robot__data-button">
+          <i>{trashIcon}</i>
+        </button>
       </RobotCardStyled>
     </li>
   );
