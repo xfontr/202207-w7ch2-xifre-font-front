@@ -3,7 +3,9 @@ import { useCallback } from "react";
 import {
   getRobotByIdActionNew,
   getRobotsActionNew,
+  deleteRobotActionNew,
 } from "../store/actionCreators/actionCreators";
+import IRobot from "../store/types/interfaces";
 
 const useAPI = () => {
   const url = process.env.REACT_APP_API_URL;
@@ -26,9 +28,20 @@ const useAPI = () => {
     [dispatch, url]
   );
 
+  const deleteRobot = useCallback(
+    async (robot: IRobot) => {
+      await fetch(`${url}robots/delete/${robot._id}`, {
+        method: "DELETE",
+      });
+      await dispatch(deleteRobotActionNew(robot));
+    },
+    [dispatch, url]
+  );
+
   return {
     getAllRobots,
     getRobotById,
+    deleteRobot,
   };
 };
 

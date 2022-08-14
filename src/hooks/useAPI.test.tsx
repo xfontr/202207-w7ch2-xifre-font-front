@@ -2,6 +2,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { Provider, useSelector } from "react-redux";
 import { store } from "../app/store";
 import { selectAllRobots } from "../store/selectors/selectors";
+import IRobot from "../store/types/interfaces";
 
 import useAPI from "./useAPI";
 
@@ -9,9 +10,13 @@ interface WrapperProps {
   children: JSX.Element | JSX.Element[];
 }
 
-const Wrapper = ({ children }: WrapperProps): JSX.Element => {
-  return <Provider store={store}>{children}</Provider>;
-};
+let Wrapper: ({ children }: WrapperProps) => JSX.Element;
+
+beforeEach(() => {
+  Wrapper = ({ children }: WrapperProps): JSX.Element => {
+    return <Provider store={store}>{children}</Provider>;
+  };
+});
 
 describe("Given a useAPI hook", () => {
   describe("When its function getAllRobots is called", () => {
@@ -19,7 +24,7 @@ describe("Given a useAPI hook", () => {
       const dataMock = [
         {
           name: "LOL",
-          imag: "#",
+          image: "#",
           creationDate: "13/08/2022",
           speed: 9,
           endurance: 3,
@@ -56,7 +61,7 @@ describe("Given a useAPI hook", () => {
       const dataMock = {
         _id: 1,
         name: "Bender 90000",
-        imag: "#",
+        image: "#",
         creationDate: "13/08/2022",
         speed: 9,
         endurance: 3,
@@ -85,6 +90,54 @@ describe("Given a useAPI hook", () => {
       });
 
       expect(robots).toStrictEqual([dataMock]);
+    });
+  });
+
+  describe("When its function deleteRobot is called", () => {
+    test("It should delete the robot passed as arguments from the DB and from the state", async () => {
+      const {
+        result: {
+          current: { robots: initialState },
+        },
+      } = renderHook(() => useSelector(selectAllRobots), {
+        wrapper: Wrapper,
+      });
+
+      expect(initialState).toHaveLength(1);
+
+      const robotArgument: IRobot = {
+        _id: 1,
+        name: "Bender 90000",
+        image: "#",
+        creationDate: "13/08/2022",
+        speed: 9,
+        endurance: 3,
+      };
+      global.fetch = jest.fn().mockReturnValue({
+        json: jest.fn().mockReturnValue({
+          message: `Succesfully deleted the robot with ID ${robotArgument._id}`,
+        }),
+      });
+
+      const {
+        result: {
+          current: { deleteRobot },
+        },
+      } = renderHook(useAPI, { wrapper: Wrapper });
+
+      await waitFor(() => {
+        deleteRobot(robotArgument);
+      });
+
+      const {
+        result: {
+          current: { robots: stateAfterDeletion },
+        },
+      } = renderHook(() => useSelector(selectAllRobots), {
+        wrapper: Wrapper,
+      });
+
+      expect(stateAfterDeletion).toHaveLength(0);
     });
   });
 });
