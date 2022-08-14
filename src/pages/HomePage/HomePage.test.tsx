@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
-import { store } from "../app/store";
+import { store } from "../../app/store";
 import HomePage from "./HomePage";
 
 describe("Given a HomPage component", () => {
