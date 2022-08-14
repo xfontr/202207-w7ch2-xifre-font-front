@@ -46,23 +46,6 @@ const RobotCardStyled = styled.article`
     border-radius: ${(props) => props.theme.radBorgerSmall};
     background-color: ${(props) => props.theme.contrastColor};
   }
-  .robot__data-button {
-    cursor: pointer;
-    border-radius: 50%;
-    border-color: ${(props) => props.theme.primaryColor};
-    background-color: ${(props) => props.theme.contrastColor};
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 23%;
-    left: 11%;
-    i {
-      color: ${(props) => props.theme.primaryColor};
-    }
-  }
 `;
 
 export default RobotCardStyled;
