@@ -7,10 +7,10 @@ interface ButtonProps {
   action: () => void;
 }
 
-const Button = ({ buttonType }: ButtonProps): JSX.Element => {
+const Button = ({ buttonType, action }: ButtonProps): JSX.Element => {
   const trashIcon = <FontAwesomeIcon icon={faTrashCan} />;
   return (
-    <ButtonStyled className={`button--${buttonType}`}>
+    <ButtonStyled className={`button--${buttonType}`} onClick={action}>
       <i>{trashIcon}</i>
     </ButtonStyled>
   );
