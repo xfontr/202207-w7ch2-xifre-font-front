@@ -1,5 +1,15 @@
 import { render, screen } from "@testing-library/react";
+import { Provider } from "react-redux";
+import { store } from "../../app/store";
 import RobotCard from "./RobotCard";
+
+interface WrapperProps {
+  children: JSX.Element | JSX.Element[];
+}
+
+const Wrapper = ({ children }: WrapperProps): JSX.Element => {
+  return <Provider store={store}>{children}</Provider>;
+};
 
 describe("Given a RobotCard component", () => {
   describe("When instantiated with a robot as props", () => {
@@ -14,7 +24,7 @@ describe("Given a RobotCard component", () => {
         endurance: 3,
       };
 
-      render(<RobotCard robot={robot} />);
+      render(<RobotCard robot={robot} />, { wrapper: Wrapper });
 
       const name = screen.getByRole("heading", { name: robot.name });
       const image = screen.getByAltText(robot.name);

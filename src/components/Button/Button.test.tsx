@@ -1,23 +1,23 @@
 import Button from "./Button";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 describe("Given a Button component", () => {
   describe("When instantiated", () => {
     test("It should show a button element", () => {
-      render(<Button buttonType={""} action={() => null} />);
+      const mockFunction = jest.fn();
+      render(<Button buttonType={""} action={mockFunction()} />);
       const buttonElement = screen.getByRole("button");
 
       expect(buttonElement).not.toBeNull();
     });
 
-    test("And when clicked on, it should call the function passed via props", () => {
+    test("And when clicked on, it should call the function passed via props", async () => {
       const mockFunction = jest.fn();
-      render(<Button buttonType={""} action={mockFunction()} />);
+      render(<Button buttonType={""} action={mockFunction} />);
       const buttonElement = screen.getByRole("button");
 
-      userEvent.click(buttonElement);
-
+      await userEvent.click(buttonElement);
       expect(mockFunction).toHaveBeenCalled();
     });
   });
