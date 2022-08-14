@@ -12,8 +12,19 @@ const useAPI = () => {
     dispatch(getRobotsActionNew(response));
   }, [dispatch, url]);
 
+  const getRobotById = useCallback(
+    async (robotId: string | number) => {
+      const robotData = await fetch(`${url}robots/${robotId as string}`);
+      const response = await robotData.json();
+
+      return response;
+    },
+    [url]
+  );
+
   return {
     getAllRobots,
+    getRobotById,
   };
 };
 
