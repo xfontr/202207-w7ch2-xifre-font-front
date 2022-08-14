@@ -4,6 +4,7 @@ import { selectAllRobots } from "../../store/selectors/selectors";
 import RobotCard from "../RobotCard/RobotCard";
 import RobotListStyled from "./RobotListStyled";
 import useAPI from "../../hooks/useAPI";
+import Form from "../Form/Form";
 
 const RobotList = (): JSX.Element => {
   const { robots } = useSelector(selectAllRobots);
@@ -16,6 +17,7 @@ const RobotList = (): JSX.Element => {
   return (
     <RobotListStyled className="robot-gallery">
       <h2 className="robot-gallery__title">Robot List</h2>
+      <Form />
       <ul className="robot-gallery__list">
         {robots.map((robot) => (
           <RobotCard robot={robot} key={robot.name} />
