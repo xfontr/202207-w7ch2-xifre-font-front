@@ -5,7 +5,7 @@ import RobotDetailsPage from "./pages/RobotDetailsPage/RobotDetailsPage";
 
 const App = () => {
   return (
-    <AppStyled className="App">
+    <AppStyled className="app-container">
       <header>
         <h1>ROBOTS</h1>
       </header>

@@ -1,12 +1,14 @@
 import IRobot from "../../store/types/interfaces";
 import Button from "../Button/Button";
 import RobotCardStyled from "./RobotCardStyled";
+import useAPI from "../../hooks/useAPI";
 
 interface RobotCardProps {
   robot: IRobot;
 }
 
 const RobotCard = ({ robot }: RobotCardProps): JSX.Element => {
+  const { deleteRobot } = useAPI();
   return (
     <li>
       <RobotCardStyled>
@@ -28,7 +30,12 @@ const RobotCard = ({ robot }: RobotCardProps): JSX.Element => {
             <span>Endurance:</span> {robot.endurance}
           </li>
         </ul>
-        <Button buttonType={"icon"} action={() => null} />
+        <Button
+          buttonType={"icon"}
+          action={() => {
+            deleteRobot(robot);
+          }}
+        />
       </RobotCardStyled>
     </li>
   );
