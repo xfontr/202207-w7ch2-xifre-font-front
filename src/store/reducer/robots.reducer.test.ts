@@ -1,5 +1,6 @@
 import {
   deleteRobotActionNew,
+  getRobotByIdActionNew,
   getRobotsActionNew,
 } from "../actionCreators/actionCreators";
 import robotsReducer from "./robots.reducer";
@@ -29,7 +30,7 @@ describe("Given a robotsReducer function", () => {
   });
 
   describe("When called with a getAll robots action as an argument", () => {
-    test("Then it should return an array with the tasks sent as a payload", () => {
+    test("Then it should return an array with the robots sent as a payload", () => {
       const robots = [
         {
           _id: "0",
@@ -42,6 +43,28 @@ describe("Given a robotsReducer function", () => {
       ];
 
       const action = getRobotsActionNew(robots);
+
+      const result = robotsReducer(robots, action);
+
+      expect(result).toStrictEqual(robots);
+    });
+  });
+
+  describe("When called with a getRobotById action as an argument", () => {
+    test("Then it should return an array with the robot which id is the same one sent as payload", () => {
+      const robots = [
+        {
+          _id: "0",
+          name: "Bender",
+          image: "#",
+          creationDate: "13/08/2022",
+          speed: 9,
+          endurance: 3,
+        },
+      ];
+      const id = "0";
+
+      const action = getRobotByIdActionNew(id);
 
       const result = robotsReducer(robots, action);
 
@@ -62,7 +85,7 @@ describe("Given a robotsReducer function", () => {
         },
         {
           _id: "1",
-          name: "robotAboutToBeDeleted",
+          name: "roboboutToBeDeleted",
           image: "#",
           creationDate: "13/08/2022",
           speed: 9,
