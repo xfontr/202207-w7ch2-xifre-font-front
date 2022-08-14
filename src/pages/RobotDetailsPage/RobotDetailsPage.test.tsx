@@ -7,6 +7,7 @@ describe("Given a RobotDetails component", () => {
   describe("When instantiated", () => {
     test("Then it should show a component with all the robot details", () => {
       const dummyRobot = {
+        _id: "0",
         name: "Bender",
         image:
           "https://www.paredro.com/wp-content/uploads/2014/05/sorayama-sexy-robot-2.jpg",
