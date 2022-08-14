@@ -1,4 +1,5 @@
 interface IRobot {
+  _id: string;
   name: string;
   image: string;
   creationDate: string;
