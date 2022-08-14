@@ -50,4 +50,41 @@ describe("Given a useAPI hook", () => {
       expect(robots).toStrictEqual(dataMock);
     });
   });
+
+  describe("When its function getRobotById is called", () => {
+    test("It should add an specific robot from the DB to the store state", async () => {
+      const dataMock = {
+        _id: 1,
+        name: "Bender 90000",
+        imag: "#",
+        creationDate: "13/08/2022",
+        speed: 9,
+        endurance: 3,
+      };
+
+      global.fetch = jest.fn().mockReturnValue({
+        json: jest.fn().mockReturnValue(dataMock),
+      });
+
+      const {
+        result: {
+          current: { getRobotById },
+        },
+      } = renderHook(useAPI, { wrapper: Wrapper });
+
+      await waitFor(() => {
+        getRobotById(dataMock._id);
+      });
+
+      const {
+        result: {
+          current: { robots },
+        },
+      } = renderHook(() => useSelector(selectAllRobots), {
+        wrapper: Wrapper,
+      });
+
+      expect(robots).toStrictEqual([dataMock]);
+    });
+  });
 });
