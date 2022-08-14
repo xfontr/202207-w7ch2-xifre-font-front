@@ -7,6 +7,7 @@ import "./index.css";
 import styledMainTheme from "./styledMainTheme";
 import { ThemeProvider } from "styled-components";
 import "@fontsource/lato";
+import { BrowserRouter } from "react-router-dom";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
@@ -15,7 +16,9 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={styledMainTheme}>
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </ThemeProvider>
     </Provider>
   </React.StrictMode>
