@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import actionTypes from "../actionTypes/actionTypes";
-import { IRobotDelete, IRobotLoad } from "../types/actionTypes";
+import { IRobotGette, IRobotLoad } from "../types/actionTypes";
 import IRobot from "../types/interfaces";
 
 const initialState: IRobot[] = [
@@ -15,7 +15,7 @@ const initialState: IRobot[] = [
   },
 ];
 
-const robotsReducer = createReducer<IRobot[]>(initialState, (builder) => {
+const robotsReducer = createReducer<IRobot[]>(initialState, (buiIRobotGet
   builder.addCase(actionTypes.getAll, (state: IRobot[], action: IRobotLoad) => [
     ...action.payload,
   ]);
