@@ -59,7 +59,7 @@ describe("Given a useAPI hook", () => {
   describe("When its function getRobotById is called", () => {
     test("It should add an specific robot from the DB to the store state", async () => {
       const dataMock = {
-        _id: 1,
+        _id: "1",
         name: "Bender 90000",
         image: "#",
         creationDate: "13/08/2022",
@@ -106,7 +106,7 @@ describe("Given a useAPI hook", () => {
       expect(initialState).toHaveLength(1);
 
       const robotArgument: IRobot = {
-        _id: 1,
+        _id: "1",
         name: "Bender 90000",
         image: "#",
         creationDate: "13/08/2022",
