@@ -46,6 +46,12 @@ const RobotCardStyled = styled.article`
     border-radius: ${(props) => props.theme.radBorgerSmall};
     background-color: ${(props) => props.theme.contrastColor};
   }
+
+  & .view-details {
+    position: absolute;
+    top: 23%;
+    left: 21%;
+  }
 `;
 
 export default RobotCardStyled;

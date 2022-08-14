@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 const ButtonStyled = styled.button`
-  &.button--icon {
+  &.button--icon-trash,
+  &.button--icon-view {
     cursor: pointer;
     border-radius: 50%;
     border-color: ${(props) => props.theme.primaryColor};

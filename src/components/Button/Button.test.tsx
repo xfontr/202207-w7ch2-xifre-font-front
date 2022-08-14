@@ -6,7 +6,7 @@ describe("Given a Button component", () => {
   describe("When instantiated", () => {
     test("It should show a button element", () => {
       const mockFunction = jest.fn();
-      render(<Button buttonType={""} action={mockFunction()} />);
+      render(<Button buttonType={"icon-trash"} action={mockFunction()} />);
       const buttonElement = screen.getByRole("button");
 
       expect(buttonElement).not.toBeNull();
@@ -14,7 +14,7 @@ describe("Given a Button component", () => {
 
     test("And when clicked on, it should call the function passed via props", async () => {
       const mockFunction = jest.fn();
-      render(<Button buttonType={""} action={mockFunction} />);
+      render(<Button buttonType={"icon-trash"} action={mockFunction} />);
       const buttonElement = screen.getByRole("button");
 
       await userEvent.click(buttonElement);
