@@ -13,7 +13,11 @@ interface Input {
 const Form = (): JSX.Element => {
   const { postRobot } = useAPI();
 
-  const handleInputObject = () => {
+  const handleInputObject = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    event.preventDefault();
+
     input.speed = Number(input.speed);
     input.endurance = Number(input.endurance);
     const newRobot: Partial<IRobot> = {
@@ -74,7 +78,7 @@ const Form = (): JSX.Element => {
             setInput({ ...input, endurance: event.target.value })
           }
         ></input>
-        <button onClick={() => handleInputObject()}>Create</button>
+        <button onClick={(event) => handleInputObject(event)}>Create</button>
       </form>
     </FormStyled>
   );
