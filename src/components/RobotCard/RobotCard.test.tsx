@@ -5,6 +5,7 @@ describe("Given a RobotCard component", () => {
   describe("When instantiated with a robot as props", () => {
     test("Then a robot card should be displayed", () => {
       const robot = {
+        _id: "0",
         name: "Bender",
         image:
           "https://www.paredro.com/wp-content/uploads/2014/05/sorayama-sexy-robot-2.jpg",

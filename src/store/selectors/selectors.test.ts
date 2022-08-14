@@ -6,6 +6,7 @@ describe("Given a selectAllTasks component", () => {
       const robots = {
         robots: [
           {
+            _id: "0",
             name: "Bender",
             image: "#",
             creationDate: "13/08/2022",

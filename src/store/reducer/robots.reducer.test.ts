@@ -6,6 +6,7 @@ describe("Given a robotsReducer function", () => {
     test("Then it should return the same list of initial robots", () => {
       const initialRobots = [
         {
+          _id: "0",
           name: "Bender",
           image: "#",
           creationDate: "13/08/2022",
@@ -28,6 +29,7 @@ describe("Given a robotsReducer function", () => {
     test("Then it should return an array with the tasks sent as a payload", () => {
       const robots = [
         {
+          _id: "0",
           name: "Bender",
           image: "#",
           creationDate: "13/08/2022",
