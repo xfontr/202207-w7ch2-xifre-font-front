@@ -140,4 +140,49 @@ describe("Given a useAPI hook", () => {
       expect(stateAfterDeletion).toHaveLength(0);
     });
   });
+
+  describe("When its function postRobot is called with a robot as an argument", () => {
+    test("It should add that specific robot to the DB and to the robot list", async () => {
+      const robot = {
+        name: "Bender 90000",
+        image: "#",
+        creationDate: "13/08/2022",
+        speed: 9,
+        endurance: 3,
+      };
+
+      const returnedRobot = {
+        _id: "1",
+        name: "Bender 90000",
+        image: "#",
+        creationDate: "13/08/2022",
+        speed: 9,
+        endurance: 3,
+      };
+
+      global.fetch = jest.fn().mockReturnValue({
+        json: jest.fn().mockReturnValue(returnedRobot),
+      });
+
+      const {
+        result: {
+          current: { postRobot },
+        },
+      } = renderHook(useAPI, { wrapper: Wrapper });
+
+      await waitFor(() => {
+        postRobot(robot);
+      });
+
+      const {
+        result: {
+          current: { robots },
+        },
+      } = renderHook(() => useSelector(selectAllRobots), {
+        wrapper: Wrapper,
+      });
+
+      expect(robots.includes(returnedRobot)).toBe(true);
+    });
+  });
 });
