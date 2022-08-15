@@ -33,18 +33,18 @@ const Form = ({ typeOfForm, robot }: FormProps): JSX.Element => {
       endurance: input.endurance,
     };
 
-    const newModifiedRobot: IRobot = {
-      _id: (robot as IRobot)._id,
-      name: input.name,
-      image: input.image,
-      creationDate: new Date().toString(),
-      speed: input.speed,
-      endurance: input.endurance,
-    };
-
     if (typeOfForm === "create") {
       await postRobot(newRobot);
     } else if (typeOfForm === "update") {
+      const newModifiedRobot: IRobot = {
+        _id: (robot as IRobot)._id,
+        name: input.name,
+        image: input.image,
+        creationDate: new Date().toString(),
+        speed: input.speed,
+        endurance: input.endurance,
+      };
+
       return modifyRobot(newModifiedRobot);
     }
   };
