@@ -17,7 +17,7 @@ interface FormProps {
 }
 
 const Form = ({ typeOfForm, robot }: FormProps): JSX.Element => {
-  const { postRobot } = useAPI();
+  const { postRobot, modifyRobot } = useAPI();
 
   const handleInputObject = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -36,7 +36,16 @@ const Form = ({ typeOfForm, robot }: FormProps): JSX.Element => {
     if (typeOfForm === "create") {
       await postRobot(newRobot);
     } else if (typeOfForm === "update") {
-      return undefined;
+      const newModifiedRobot: IRobot = {
+        _id: (robot as IRobot)._id,
+        name: input.name,
+        image: input.image,
+        creationDate: new Date().toString(),
+        speed: input.speed,
+        endurance: input.endurance,
+      };
+
+      return modifyRobot(newModifiedRobot);
     }
   };
 

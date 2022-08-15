@@ -5,6 +5,7 @@ import {
   IRobotDelete,
   IRobotGet,
   IRobotGetById,
+  IRobotModify,
 } from "../types/actionTypes";
 import IRobot from "../types/interfaces";
 
@@ -27,6 +28,16 @@ const robotsReducer = createReducer<IRobot[]>(initialState, (builder) => {
 
   builder.addCase(actionTypes.delete, (state: IRobot[], action: IRobotDelete) =>
     state.filter((robot) => robot._id !== action.payload._id)
+  );
+
+  builder.addCase(
+    actionTypes.modify,
+    (state: IRobot[], action: IRobotModify) => [
+      ...state.map(
+        (robot) => (robot._id === action.payload._id ? action.payload : robot),
+        ...state
+      ),
+    ]
   );
 
   builder.addDefaultCase((state: IRobot[]) => [...state]);

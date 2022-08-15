@@ -9,3 +9,5 @@ export const getRobotByIdActionNew = createAction<IRobot>(actionTypes.getById);
 export const addRobotActionNew = createAction<IRobot>(actionTypes.add);
 
 export const deleteRobotActionNew = createAction<IRobot>(actionTypes.delete);
+
+export const modifyRobotActionNew = createAction<IRobot>(actionTypes.modify);

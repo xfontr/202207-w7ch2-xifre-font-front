@@ -3,6 +3,7 @@ const actionTypes = {
   getById: "robots@getById",
   add: "robots@add",
   delete: "robots@delete",
+  modify: "robots@modify",
 };
 
 export default actionTypes;
