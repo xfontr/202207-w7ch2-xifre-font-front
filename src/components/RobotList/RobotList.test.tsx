@@ -1,5 +1,5 @@
 import RobotList from "./RobotList";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { store } from "../../app/store";
 import { BrowserRouter } from "react-router-dom";
@@ -32,6 +32,33 @@ describe("Given a RobotList component", () => {
       const robots = screen.getAllByRole("heading", { name: "Bender" });
 
       robots.forEach((robot) => expect(robot).toBeInTheDocument());
+    });
+
+    test("It should should a show form button that should show a form on click", async () => {
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <RobotList />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      const addButton = screen.getByRole("button", { name: "Add robot" });
+
+      expect(addButton).toBeInTheDocument();
+
+      await fireEvent.click(addButton);
+      const form = await screen.findAllByRole("textbox");
+
+      expect(form.length > 0).toBe(true);
+      expect(addButton.textContent).toBe("Close");
+
+      await fireEvent.click(addButton);
+
+      form.forEach((form) => {
+        expect(form).not.toBeInTheDocument();
+      });
+      expect(addButton.textContent).toBe("Add robot");
     });
   });
 });

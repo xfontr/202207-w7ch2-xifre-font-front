@@ -3,11 +3,16 @@ import { faTrashCan, faEye } from "@fortawesome/free-solid-svg-icons";
 import ButtonStyled from "./ButtonStyled";
 
 interface ButtonProps {
+  content?: string;
   buttonType: string;
   action: () => void;
 }
 
-const Button = ({ buttonType, action }: ButtonProps): JSX.Element => {
+const Button = ({
+  buttonType,
+  action,
+  content = "",
+}: ButtonProps): JSX.Element => {
   const trashIcon = <FontAwesomeIcon icon={faTrashCan} />;
   const viewIcon = <FontAwesomeIcon icon={faEye} />;
 
@@ -17,6 +22,7 @@ const Button = ({ buttonType, action }: ButtonProps): JSX.Element => {
       className={`button--${buttonType}`}
       onClick={action}
     >
+      {content}
       {buttonType === "icon-trash" && <i>{trashIcon}</i>}
       {buttonType === "icon-view" && <i>{viewIcon}</i>}
     </ButtonStyled>
