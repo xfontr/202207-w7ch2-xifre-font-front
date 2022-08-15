@@ -58,17 +58,16 @@ const useAPI = () => {
   );
 
   const modifyRobot = useCallback(
-    async (robot: Partial<IRobot>) => {
-      const modifiedRobot = await fetch(`${url}update/`, {
+    async (robot: IRobot) => {
+      const modifiedRobot = await fetch(`${url}robots/update/`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
         },
         body: JSON.stringify(robot),
       });
-      const { newRobot } = await modifiedRobot.json();
-
-      await dispatch(modifyRobotActionNew(newRobot));
+      const parsedRobot = await modifiedRobot.json();
+      await dispatch(modifyRobotActionNew(parsedRobot));
     },
     [dispatch, url]
   );

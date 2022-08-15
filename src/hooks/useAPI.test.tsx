@@ -189,4 +189,60 @@ describe("Given a useAPI hook", () => {
       expect(robots.includes(newRobot)).toBe(true);
     });
   });
+
+  describe("When its function modifyRobot is called with a robot as arguments", () => {
+    test("Then it should modify the robot in the DB with a matching ID", async () => {
+      const {
+        result: {
+          current: { robots: initialState },
+        },
+      } = renderHook(() => useSelector(selectAllRobots), {
+        wrapper: Wrapper,
+      });
+      const initialRobot = [
+        {
+          _id: "1",
+          name: "Bender 90000",
+          image: "#",
+          creationDate: "13/08/2022",
+          speed: 9,
+          endurance: 3,
+        },
+      ];
+      expect(initialState).toEqual(initialRobot);
+
+      const passedRobot = {
+        _id: "1",
+        name: "modifiedRobot",
+        image: "",
+        creationDate: "13/08/2022",
+        speed: 0,
+        endurance: 0,
+      };
+
+      global.fetch = jest.fn().mockReturnValue({
+        json: jest.fn().mockReturnValue(passedRobot),
+      });
+
+      const {
+        result: {
+          current: { modifyRobot },
+        },
+      } = renderHook(useAPI, { wrapper: Wrapper });
+
+      await waitFor(() => {
+        modifyRobot(passedRobot);
+      });
+
+      const {
+        result: {
+          current: { robots: stateAfterdeletion },
+        },
+      } = renderHook(() => useSelector(selectAllRobots), {
+        wrapper: Wrapper,
+      });
+      const finalRobot = [passedRobot];
+      expect(stateAfterdeletion).toEqual(finalRobot);
+    });
+  });
 });
