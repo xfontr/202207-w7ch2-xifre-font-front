@@ -1,5 +1,5 @@
 import { configureStore, createReducer } from "@reduxjs/toolkit";
-import IRobot from "../../store/types/interfaces";
+import IRobot from "../store/types/interfaces";
 
 const initialState: IRobot[] = [
   {
