@@ -1,9 +1,19 @@
 import styled from "styled-components";
 
 const ButtonStyled = styled.button`
+  cursor: pointer;
+  &.button--normal,
+  &.button--submit {
+    border: none;
+    color: ${(props) => props.theme.primaryColor};
+    padding: ${(props) => props.theme.containerPaddingSmall}
+      calc(${(props) => props.theme.containerPaddingSmall} * 2);
+    border-radius: ${(props) => props.theme.radBorgerSmall};
+    background-color: ${(props) => props.theme.contrastColor};
+  }
+
   &.button--icon-trash,
   &.button--icon-view {
-    cursor: pointer;
     border-radius: 50%;
     border-color: ${(props) => props.theme.primaryColor};
     background-color: ${(props) => props.theme.contrastColor};

@@ -2,6 +2,7 @@ import FormStyled from "./FormStyled";
 import { FormEvent, useState } from "react";
 import useAPI from "../../hooks/useAPI";
 import IRobot from "../../store/types/interfaces";
+import Button from "../Button/Button";
 
 interface Input {
   name: string;
@@ -13,11 +14,12 @@ interface Input {
 const Form = (): JSX.Element => {
   const { postRobot } = useAPI();
 
-  const handleInputObject = (event: FormEvent<HTMLFormElement>) => {
+  const handleInputObject = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     input.speed = Number(input.speed);
     input.endurance = Number(input.endurance);
+
     const newRobot: Partial<IRobot> = {
       name: input.name,
       image: input.image,
@@ -25,7 +27,8 @@ const Form = (): JSX.Element => {
       speed: input.speed,
       endurance: input.endurance,
     };
-    postRobot(newRobot);
+
+    await postRobot(newRobot);
   };
 
   const inputField = {
@@ -83,7 +86,7 @@ const Form = (): JSX.Element => {
             setInput({ ...input, endurance: event.target.value })
           }
         ></input>
-        <button>Create</button>
+        <Button content="Create" buttonType="submit" action={() => {}} />
       </form>
     </FormStyled>
   );

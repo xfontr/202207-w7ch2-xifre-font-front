@@ -21,6 +21,7 @@ const Button = ({
       data-testid={`button--${buttonType}`}
       className={`button--${buttonType}`}
       onClick={action}
+      type={buttonType === "submit" ? "submit" : "button"}
     >
       {content}
       {buttonType === "icon-trash" && <i>{trashIcon}</i>}

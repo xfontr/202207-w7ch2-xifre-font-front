@@ -23,20 +23,24 @@ const RobotList = (): JSX.Element => {
   return (
     <>
       <Button
+        key={"form-button"}
         content={isFormVisible ? "Close" : "Add robot"}
         buttonType="normal"
         action={() => toggleForm()}
       />
-      {isFormVisible && <Form />}
-      <RobotListStyled className="robot-gallery">
-        <h2 className="robot-gallery__title">Robot List</h2>
+      {isFormVisible && <Form key={"form"} />}
+      {robots.length > 0 && (
+        <RobotListStyled className="robot-gallery">
+          <h2 className="robot-gallery__title">Robot List</h2>
 
-        <ul className="robot-gallery__list">
-          {robots.map((robot) => (
-            <RobotCard robot={robot} key={robot.name} />
-          ))}
-        </ul>
-      </RobotListStyled>
+          <ul className="robot-gallery__list">
+            {robots.map((robot, index) => (
+              <RobotCard robot={robot} key={`${robot.name}${index}`} />
+            ))}
+          </ul>
+        </RobotListStyled>
+      )}
+      {robots.length === 0 && <p>Beeb bop no robots found</p>}
     </>
   );
 };

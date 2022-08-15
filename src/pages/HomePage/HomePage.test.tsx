@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import { store } from "../../app/store";
+import mockStore from "../../components/mocks/mockStore";
 import HomePage from "./HomePage";
 
 describe("Given a HomPage component", () => {
@@ -9,7 +9,7 @@ describe("Given a HomPage component", () => {
     test("Then it should show a list of robots", () => {
       render(
         <BrowserRouter>
-          <Provider store={store}>
+          <Provider store={mockStore}>
             <HomePage />
           </Provider>
         </BrowserRouter>
