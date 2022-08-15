@@ -13,6 +13,7 @@ const ButtonStyled = styled.button`
   }
 
   &.button--icon-trash,
+  &.button--icon-tool,
   &.button--icon-view {
     border-radius: 50%;
     border-color: ${(props) => props.theme.primaryColor};
@@ -23,8 +24,7 @@ const ButtonStyled = styled.button`
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 23%;
-    left: 11%;
+
     i {
       color: ${(props) => props.theme.primaryColor};
     }
