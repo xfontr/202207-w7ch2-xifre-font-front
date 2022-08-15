@@ -14,11 +14,12 @@ interface Input {
 const Form = (): JSX.Element => {
   const { postRobot } = useAPI();
 
-  const handleInputObject = (event: FormEvent<HTMLFormElement>) => {
+  const handleInputObject = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     input.speed = Number(input.speed);
     input.endurance = Number(input.endurance);
+
     const newRobot: Partial<IRobot> = {
       name: input.name,
       image: input.image,
@@ -26,7 +27,8 @@ const Form = (): JSX.Element => {
       speed: input.speed,
       endurance: input.endurance,
     };
-    postRobot(newRobot);
+
+    await postRobot(newRobot);
   };
 
   const inputField = {

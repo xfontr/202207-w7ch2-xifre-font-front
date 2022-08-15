@@ -42,16 +42,16 @@ const useAPI = () => {
 
   const postRobot = useCallback(
     async (robot: Partial<IRobot>) => {
-      const newRobot = await fetch(`${url}robots/create`, {
+      const newRobotWithoudId = await fetch(`${url}robots/create`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
         },
         body: JSON.stringify(robot),
       });
-      const newRobotWithId: IRobot = await newRobot.json();
+      const { newRobot } = await newRobotWithoudId.json();
 
-      dispatch(addRobotActionNew(newRobotWithId));
+      await dispatch(addRobotActionNew(newRobot));
     },
     [dispatch, url]
   );
