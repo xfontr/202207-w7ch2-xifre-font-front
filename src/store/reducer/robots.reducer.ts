@@ -8,17 +8,7 @@ import {
 } from "../types/actionTypes";
 import IRobot from "../types/interfaces";
 
-const initialState: IRobot[] = [
-  {
-    _id: "0",
-    name: "Bender",
-    image:
-      "https://www.paredro.com/wp-content/uploads/2014/05/sorayama-sexy-robot-2.jpg",
-    creationDate: "13/08/2022",
-    speed: 9,
-    endurance: 3,
-  },
-];
+const initialState: IRobot[] = [];
 
 const robotsReducer = createReducer<IRobot[]>(initialState, (builder) => {
   builder.addCase(actionTypes.getAll, (state: IRobot[], action: IRobotGet) => [

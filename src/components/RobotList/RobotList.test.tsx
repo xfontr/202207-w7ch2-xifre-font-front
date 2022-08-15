@@ -1,15 +1,15 @@
 import RobotList from "./RobotList";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
-import { store } from "../../app/store";
 import { BrowserRouter } from "react-router-dom";
+import mockStore from "../mocks/mockStore";
 
 describe("Given a RobotList component", () => {
   describe("When instantiated", () => {
     test("It should show a heading with the text 'Robot List'", () => {
       render(
         <BrowserRouter>
-          <Provider store={store}>
+          <Provider store={mockStore}>
             <RobotList />
           </Provider>
         </BrowserRouter>
@@ -23,7 +23,7 @@ describe("Given a RobotList component", () => {
     test("Then it should show a list of robots", () => {
       render(
         <BrowserRouter>
-          <Provider store={store}>
+          <Provider store={mockStore}>
             <RobotList />
           </Provider>
         </BrowserRouter>
@@ -37,7 +37,7 @@ describe("Given a RobotList component", () => {
     test("It should should a show form button that should show a form on click", async () => {
       render(
         <BrowserRouter>
-          <Provider store={store}>
+          <Provider store={mockStore}>
             <RobotList />
           </Provider>
         </BrowserRouter>

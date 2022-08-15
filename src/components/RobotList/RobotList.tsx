@@ -29,15 +29,18 @@ const RobotList = (): JSX.Element => {
         action={() => toggleForm()}
       />
       {isFormVisible && <Form key={"form"} />}
-      <RobotListStyled className="robot-gallery">
-        <h2 className="robot-gallery__title">Robot List</h2>
+      {robots.length > 0 && (
+        <RobotListStyled className="robot-gallery">
+          <h2 className="robot-gallery__title">Robot List</h2>
 
-        <ul className="robot-gallery__list">
-          {robots.map((robot, index) => (
-            <RobotCard robot={robot} key={`${robot.name}${index}`} />
-          ))}
-        </ul>
-      </RobotListStyled>
+          <ul className="robot-gallery__list">
+            {robots.map((robot, index) => (
+              <RobotCard robot={robot} key={`${robot.name}${index}`} />
+            ))}
+          </ul>
+        </RobotListStyled>
+      )}
+      {robots.length === 0 && <p>Beeb bop no robots found</p>}
     </>
   );
 };
