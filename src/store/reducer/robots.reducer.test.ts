@@ -3,6 +3,7 @@ import {
   deleteRobotActionNew,
   getRobotByIdActionNew,
   getRobotsActionNew,
+  modifyRobotActionNew,
 } from "../actionCreators/actionCreators";
 import IRobot from "../types/interfaces";
 import robotsReducer from "./robots.reducer";
@@ -142,6 +143,60 @@ describe("Given a robotsReducer function", () => {
       };
 
       const action = deleteRobotActionNew(robot);
+      const result = robotsReducer(robotsBefore, action);
+
+      expect(result).toStrictEqual(robotsAfter);
+    });
+  });
+
+  describe("When called with a modifyRobot action as argument", () => {
+    test("Then it should return an array of robots and the payload robot should replace the robot with matching id", () => {
+      const robotsBefore = [
+        {
+          _id: "0",
+          name: "",
+          image: "",
+          creationDate: "",
+          speed: 0,
+          endurance: 0,
+        },
+        {
+          _id: "1",
+          name: "",
+          image: "",
+          creationDate: "",
+          speed: 0,
+          endurance: 0,
+        },
+      ];
+      const robotsAfter = [
+        {
+          _id: "0",
+          name: "",
+          image: "",
+          creationDate: "",
+          speed: 0,
+          endurance: 0,
+        },
+        {
+          _id: "1",
+          name: "modifiedRobot",
+          image: "",
+          creationDate: "",
+          speed: 0,
+          endurance: 0,
+        },
+      ];
+
+      const robot = {
+        _id: "1",
+        name: "modifiedRobot",
+        image: "",
+        creationDate: "",
+        speed: 0,
+        endurance: 0,
+      };
+      const action = modifyRobotActionNew(robot);
       const result = robotsReducer(robotsBefore, action);
 
       expect(result).toStrictEqual(robotsAfter);

@@ -30,10 +30,14 @@ const robotsReducer = createReducer<IRobot[]>(initialState, (builder) => {
     state.filter((robot) => robot._id !== action.payload._id)
   );
 
-  builder.addCase(actionTypes.modify, (state: IRobot[], action: IRobotModify) =>
-    state.map((robot) =>
-      robot._id === action.payload._id ? action.payload : robot
-    )
+  builder.addCase(
+    actionTypes.modify,
+    (state: IRobot[], action: IRobotModify) => [
+      ...state.map(
+        (robot) => (robot._id === action.payload._id ? action.payload : robot),
+        ...state
+      ),
+    ]
   );
 
   builder.addDefaultCase((state: IRobot[]) => [...state]);
