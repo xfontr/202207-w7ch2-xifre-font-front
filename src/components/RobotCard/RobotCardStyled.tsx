@@ -49,8 +49,17 @@ const RobotCardStyled = styled.article`
 
   & .view-details {
     position: absolute;
-    top: 23%;
+    top: 25%;
+    left: 11%;
+  }
+  & .button--icon-tool {
+    position: absolute;
+    top: 25%;
     left: 21%;
+  }
+  & .button--icon-trash {
+    top: 25%;
+    left: 31%;
   }
 `;
 

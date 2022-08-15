@@ -52,6 +52,13 @@ const RobotCard = ({ robot }: RobotCardProps): JSX.Element => {
             action={() => {}}
           />
         </Link>
+        <Button
+          key="button-modify"
+          buttonType={"icon-tool"}
+          action={() => {
+            deleteRobot(robot);
+          }}
+        />
       </RobotCardStyled>
     </li>
   );

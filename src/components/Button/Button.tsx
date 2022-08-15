@@ -1,5 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan, faEye } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrashCan,
+  faEye,
+  faScrewdriver,
+} from "@fortawesome/free-solid-svg-icons";
 import ButtonStyled from "./ButtonStyled";
 
 interface ButtonProps {
@@ -15,6 +19,7 @@ const Button = ({
 }: ButtonProps): JSX.Element => {
   const trashIcon = <FontAwesomeIcon icon={faTrashCan} />;
   const viewIcon = <FontAwesomeIcon icon={faEye} />;
+  const modifyIcon = <FontAwesomeIcon icon={faScrewdriver} />;
 
   return (
     <ButtonStyled
@@ -26,6 +31,7 @@ const Button = ({
       {content}
       {buttonType === "icon-trash" && <i>{trashIcon}</i>}
       {buttonType === "icon-view" && <i>{viewIcon}</i>}
+      {buttonType === "icon-tool" && <i>{modifyIcon}</i>}
     </ButtonStyled>
   );
 };
