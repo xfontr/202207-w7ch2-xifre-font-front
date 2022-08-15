@@ -151,17 +151,21 @@ describe("Given a useAPI hook", () => {
         endurance: 3,
       };
 
-      const returnedRobot = {
-        _id: "1",
-        name: "Bender 90000",
-        image: "#",
-        creationDate: "13/08/2022",
-        speed: 9,
-        endurance: 3,
+      const response = {
+        newRobot: {
+          _id: "1",
+          name: "Bender 90000",
+          image: "#",
+          creationDate: "13/08/2022",
+          speed: 9,
+          endurance: 3,
+        },
       };
 
+      const { newRobot } = response;
+
       global.fetch = jest.fn().mockReturnValue({
-        json: jest.fn().mockReturnValue(returnedRobot),
+        json: jest.fn().mockReturnValue(response),
       });
 
       const {
@@ -182,7 +186,7 @@ describe("Given a useAPI hook", () => {
         wrapper: Wrapper,
       });
 
-      expect(robots.includes(returnedRobot)).toBe(true);
+      expect(robots.includes(newRobot)).toBe(true);
     });
   });
 });
