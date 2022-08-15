@@ -68,7 +68,7 @@ const RobotCard = ({ robot }: RobotCardProps): JSX.Element => {
           }}
         />
       </RobotCardStyled>
-      {isFormVisible && <Form typeOfForm="update" />}
+      {isFormVisible && <Form typeOfForm="update" robot={robot} />}
     </li>
   );
 };

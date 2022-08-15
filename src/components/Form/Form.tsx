@@ -13,9 +13,10 @@ interface Input {
 
 interface FormProps {
   typeOfForm: "create" | "update";
+  robot?: IRobot;
 }
 
-const Form = ({ typeOfForm }: FormProps): JSX.Element => {
+const Form = ({ typeOfForm, robot }: FormProps): JSX.Element => {
   const { postRobot } = useAPI();
 
   const handleInputObject = async (event: FormEvent<HTMLFormElement>) => {
