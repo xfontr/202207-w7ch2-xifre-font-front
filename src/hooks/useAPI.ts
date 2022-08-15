@@ -5,6 +5,7 @@ import {
   getRobotsActionNew,
   deleteRobotActionNew,
   addRobotActionNew,
+  modifyRobotActionNew,
 } from "../store/actionCreators/actionCreators";
 import IRobot from "../store/types/interfaces";
 
@@ -56,11 +57,28 @@ const useAPI = () => {
     [dispatch, url]
   );
 
+  const modifyRobot = useCallback(
+    async (robot: Partial<IRobot>) => {
+      const modifiedRobot = await fetch(`${url}update/`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(robot),
+      });
+      const { newRobot } = await modifiedRobot.json();
+
+      await dispatch(modifyRobotActionNew(newRobot));
+    },
+    [dispatch, url]
+  );
+
   return {
     getAllRobots,
     getRobotById,
     deleteRobot,
     postRobot,
+    modifyRobot,
   };
 };
 
