@@ -1,5 +1,5 @@
 import FormStyled from "./FormStyled";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import useAPI from "../../hooks/useAPI";
 import IRobot from "../../store/types/interfaces";
 
@@ -13,9 +13,7 @@ interface Input {
 const Form = (): JSX.Element => {
   const { postRobot } = useAPI();
 
-  const handleInputObject = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const handleInputObject = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     input.speed = Number(input.speed);
@@ -39,9 +37,13 @@ const Form = (): JSX.Element => {
   const [input, setInput] = useState<Input>(inputField);
   return (
     <FormStyled className="create-robot">
-      <form className="create-robot__form">
+      <form
+        className="create-robot__form"
+        onSubmit={(event) => handleInputObject(event)}
+      >
         <label htmlFor="name">Name</label>
         <input
+          data-testid="name"
           id="name"
           autoComplete="off"
           type="text"
@@ -50,6 +52,7 @@ const Form = (): JSX.Element => {
         ></input>
         <label htmlFor="image">Image</label>
         <input
+          data-testid="image"
           id="image"
           autoComplete="off"
           type="text"
@@ -60,6 +63,7 @@ const Form = (): JSX.Element => {
         ></input>
         <label htmlFor="speed">Speed</label>
         <input
+          data-testid="speed"
           id="speed"
           autoComplete="off"
           type="text"
@@ -70,6 +74,7 @@ const Form = (): JSX.Element => {
         ></input>
         <label htmlFor="endurance">Endurance</label>
         <input
+          data-testid="endurance"
           id="endurance"
           autoComplete="off"
           type="text"
@@ -78,7 +83,7 @@ const Form = (): JSX.Element => {
             setInput({ ...input, endurance: event.target.value })
           }
         ></input>
-        <button onClick={(event) => handleInputObject(event)}>Create</button>
+        <button>Create</button>
       </form>
     </FormStyled>
   );
