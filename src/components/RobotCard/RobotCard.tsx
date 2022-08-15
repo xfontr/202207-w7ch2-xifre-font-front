@@ -3,6 +3,8 @@ import Button from "../Button/Button";
 import RobotCardStyled from "./RobotCardStyled";
 import useAPI from "../../hooks/useAPI";
 import { Link, useLocation } from "react-router-dom";
+import Form from "../Form/Form";
+import { useState } from "react";
 
 interface RobotCardProps {
   robot: IRobot;
@@ -10,6 +12,11 @@ interface RobotCardProps {
 
 const RobotCard = ({ robot }: RobotCardProps): JSX.Element => {
   const location = useLocation();
+  const [isFormVisible, setFormVisibility] = useState(false);
+
+  const toggleForm = (): void => {
+    setFormVisibility(!isFormVisible);
+  };
 
   const { deleteRobot } = useAPI();
   return (
@@ -52,14 +59,16 @@ const RobotCard = ({ robot }: RobotCardProps): JSX.Element => {
             action={() => {}}
           />
         </Link>
+
         <Button
           key="button-modify"
           buttonType={"icon-tool"}
           action={() => {
-            deleteRobot(robot);
+            toggleForm();
           }}
         />
       </RobotCardStyled>
+      {isFormVisible && <Form typeOfForm="update" robot={robot} />}
     </li>
   );
 };

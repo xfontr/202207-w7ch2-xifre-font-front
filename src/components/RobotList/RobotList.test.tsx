@@ -2,7 +2,7 @@ import RobotList from "./RobotList";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import mockStore from "../mocks/mockStore";
+import mockStore from "../../mocks/mockStore";
 
 describe("Given a RobotList component", () => {
   describe("When instantiated", () => {

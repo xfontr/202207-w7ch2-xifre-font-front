@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
-import mockStore from "../../components/mocks/mockStore";
+import mockStore from "../../mocks/mockStore";
 import RobotDetailsPage from "./RobotDetailsPage";
 
 describe("Given a RobotDetails component", () => {
