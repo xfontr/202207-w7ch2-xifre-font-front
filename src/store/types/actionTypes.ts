@@ -18,3 +18,5 @@ export interface IRobotGetById extends RobotAction {}
 export interface IRobotAdd extends RobotAction {}
 
 export interface IRobotDelete extends RobotAction {}
+
+export interface IRobotModify extends RobotAction {}
