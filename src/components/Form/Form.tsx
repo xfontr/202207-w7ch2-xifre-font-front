@@ -2,6 +2,7 @@ import FormStyled from "./FormStyled";
 import { FormEvent, useState } from "react";
 import useAPI from "../../hooks/useAPI";
 import IRobot from "../../store/types/interfaces";
+import Button from "../Button/Button";
 
 interface Input {
   name: string;
@@ -83,7 +84,7 @@ const Form = (): JSX.Element => {
             setInput({ ...input, endurance: event.target.value })
           }
         ></input>
-        <button>Create</button>
+        <Button content="Create" buttonType="submit" action={() => {}} />
       </form>
     </FormStyled>
   );
