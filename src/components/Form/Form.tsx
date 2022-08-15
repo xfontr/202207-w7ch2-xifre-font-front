@@ -11,7 +11,12 @@ interface Input {
   endurance: string | number;
 }
 
-const Form = (): JSX.Element => {
+interface FormProps {
+  typeOfForm: "create" | "update";
+  robot?: IRobot;
+}
+
+const Form = ({ typeOfForm, robot }: FormProps): JSX.Element => {
   const { postRobot } = useAPI();
 
   const handleInputObject = async (event: FormEvent<HTMLFormElement>) => {
@@ -28,7 +33,11 @@ const Form = (): JSX.Element => {
       endurance: input.endurance,
     };
 
-    await postRobot(newRobot);
+    if (typeOfForm === "create") {
+      await postRobot(newRobot);
+    } else if (typeOfForm === "update") {
+      return undefined;
+    }
   };
 
   const inputField = {
@@ -86,7 +95,12 @@ const Form = (): JSX.Element => {
             setInput({ ...input, endurance: event.target.value })
           }
         ></input>
-        <Button content="Create" buttonType="submit" action={() => {}} />
+        {typeOfForm === "create" && (
+          <Button content="Create" buttonType="submit" action={() => {}} />
+        )}
+        {typeOfForm === "update" && (
+          <Button content="Update" buttonType="submit" action={() => {}} />
+        )}
       </form>
     </FormStyled>
   );

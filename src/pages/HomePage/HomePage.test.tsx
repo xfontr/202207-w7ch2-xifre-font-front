@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import mockStore from "../../components/mocks/mockStore";
+import mockStore from "../../mocks/mockStore";
 import HomePage from "./HomePage";
 
 describe("Given a HomPage component", () => {

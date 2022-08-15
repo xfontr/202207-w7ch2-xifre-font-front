@@ -28,7 +28,7 @@ const Wrapper = ({ children }: WrapperProps): JSX.Element => {
 describe("Given a Form component", () => {
   describe("When instantiated", () => {
     test("It should show four labels with four inputs attached to each", () => {
-      render(<Form />, { wrapper: Wrapper });
+      render(<Form typeOfForm="create" />, { wrapper: Wrapper });
 
       const nameLabel = screen.getByLabelText("Name");
       expect(nameLabel).not.toBeNull();
@@ -43,7 +43,7 @@ describe("Given a Form component", () => {
 
   describe("When text is entered in the input boxes", () => {
     test("It should change the 'value' property of name input element", () => {
-      render(<Form />, { wrapper: Wrapper });
+      render(<Form typeOfForm="create" />, { wrapper: Wrapper });
       const input = screen.getByTestId("name") as HTMLInputElement;
       fireEvent.change(input, {
         target: { value: "a" },
@@ -52,7 +52,7 @@ describe("Given a Form component", () => {
     });
 
     test("It should change the 'value' property of image input element", () => {
-      render(<Form />, { wrapper: Wrapper });
+      render(<Form typeOfForm="create" />, { wrapper: Wrapper });
       const input = screen.getByTestId("image") as HTMLInputElement;
       fireEvent.change(input, {
         target: { value: "a" },
@@ -61,7 +61,7 @@ describe("Given a Form component", () => {
     });
 
     test("It should change the 'value' property of speed input element", () => {
-      render(<Form />, { wrapper: Wrapper });
+      render(<Form typeOfForm="create" />, { wrapper: Wrapper });
       const input = screen.getByTestId("speed") as HTMLInputElement;
       fireEvent.change(input, {
         target: { value: "a" },
@@ -70,7 +70,7 @@ describe("Given a Form component", () => {
     });
 
     test("It should change the 'value' property of endurance input element", () => {
-      render(<Form />, { wrapper: Wrapper });
+      render(<Form typeOfForm="create" />, { wrapper: Wrapper });
       const input = screen.getByTestId("endurance") as HTMLInputElement;
       fireEvent.change(input, {
         target: { value: "a" },
@@ -81,7 +81,7 @@ describe("Given a Form component", () => {
 
   describe("When form button is clicked", () => {
     test("It should prevent its default behaviour", async () => {
-      render(<Form />, { wrapper: Wrapper });
+      render(<Form typeOfForm="create" />, { wrapper: Wrapper });
 
       const buttonElement = screen.getByRole("button");
       await userEvent.click(buttonElement);

@@ -28,7 +28,8 @@ const RobotList = (): JSX.Element => {
         buttonType="normal"
         action={() => toggleForm()}
       />
-      {isFormVisible && <Form key={"form"} />}
+      {isFormVisible && <Form key={"form"} typeOfForm="create" />}
+
       {robots.length > 0 && (
         <RobotListStyled className="robot-gallery">
           <h2 className="robot-gallery__title">Robot List</h2>
@@ -40,6 +41,7 @@ const RobotList = (): JSX.Element => {
           </ul>
         </RobotListStyled>
       )}
+
       {robots.length === 0 && <p>Beeb bop no robots found</p>}
     </>
   );
